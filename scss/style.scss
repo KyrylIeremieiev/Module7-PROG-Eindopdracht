@@ -1,2 +1,9 @@
 @use "./abstracts/reset";
 @use "./base.scss";
+
+/* components */
+@use "./components/right.scss";
+@use "./components/left.scss";
+
+@use "./components/header.scss";
+@use "./components/footer.scss";

@@ -1,0 +1,40 @@
+.leftSection{
+    width: 50vw;
+    font-size: 40%;
+}
+
+.episodes{
+    width: 80%;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    &__episode{
+        position: relative;
+        width: 40%;
+        cursor: pointer;
+    }
+
+    &__image{
+        width: 100%;
+        border-radius: 0.5rem;
+    }
+
+    &__date{
+        position: absolute;
+        top: 2%;
+        right: 2%;
+        font-size: 150%;
+        background: #ECECEC;
+        border-radius: 0.2rem;
+    }
+
+    &__title{
+        position: absolute;
+        bottom: 4%;
+        left: 1%;
+        font-size: 120%;
+        background: #ECECEC;
+    }
+
+}
