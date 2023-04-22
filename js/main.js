@@ -12,11 +12,32 @@ class LeftPanel{
     }
 
     ApplyDataToEpisode(data){
+        //applies random episodes to the li's
+        //for gods sake this code is unnecessarily complicated but it works
         this.applyDataToLeftPanel = new ApplyDataToLeftPanel(data, this.episode);
-        this.applyDataToLeftPanel.AssignClass();
-        this.applyDataToLeftPanel.ApplyDataToDate();
-        this.applyDataToLeftPanel.ApplyDataToCover();
-        this.applyDataToLeftPanel.ApplyDataToTitle();
+        this.randomArr = [];
+        let randomCheck = false;
+        for(let i = 0; i < this.episode.length; i++){
+            this.random = Math.floor(Math.random() * Object.keys(data.episodes).length);
+            //checks is random number has been added before
+            for(let x = 0; x < this.randomArr.length; x++){
+                if(this.random == this.randomArr[x]){
+                    i-=1;
+                    randomCheck = true;
+                }
+            }
+            if(randomCheck == false){
+                this.applyDataToLeftPanel.ApplyDataToDate(i, this.random);
+                this.applyDataToLeftPanel.ApplyDataToCover(i, this.random);
+                this.applyDataToLeftPanel.ApplyDataToTitle(i, this.random);
+                this.randomArr.push(this.random);
+                console.log("baller")
+            }
+            else{
+                randomCheck = false;
+            }
+        }
+        
     }
 
     episodeOnclick(){
@@ -33,28 +54,16 @@ class ApplyDataToLeftPanel{
         this.episode = episode;
     }
 
-    AssignClass(){
-        for(let i = 0; i < this.episode.length; i++){
-            this.episode[i].classList.add("episodeNumber" + 1)
-        }
+    ApplyDataToDate(current, random){
+        this.episode[current].children[0].innerText =  Object.values(this.data.episodes[random])[2];
     }
 
-    ApplyDataToDate(){
-        for(let i = 0; i < this.episode.length; i++){
-            this.episode[i].children[0].innerText =  Object.values(this.data.episodes[i])[2];
-        }
+    ApplyDataToCover(current, random){
+        this.episode[current].children[1].setAttribute("src", Object.values(this.data.episodes[random])[6]);
     }
 
-    ApplyDataToCover(){
-        for(let i = 0; i < this.episode.length; i++){
-            this.episode[i].children[1].setAttribute("src", Object.values(this.data.episodes[i])[6]);
-        }
-    }
-
-    ApplyDataToTitle(){
-        for(let i = 0; i < this.episode.length; i++){
-            this.episode[i].children[2].innerText =  Object.values(this.data.episodes[i])[0];
-        }
+    ApplyDataToTitle(current, random){
+        this.episode[current].children[2].innerText =  Object.values(this.data.episodes[random])[0];
     }
 }
 
@@ -113,7 +122,7 @@ class GetData{
 
 class App{
     constructor(){
-        this.currentFeatured = 0;
+        this.currentFeatured = this.initRandom();
         this.getData = new GetData();
         this.leftPanel = new LeftPanel();
         this.rightPanel = new RightPanel();
@@ -125,9 +134,14 @@ class App{
         });
     }
 
+    initRandom(){
+        let random = Math.floor(Math.random() * 7);
+        return random
+    }
+
     applyEpisodeToFeatured = (newFeatured) =>{
         console.log(newFeatured)
-        this.rightPanel.ApplyDataToFeaturedEpisode(this.data, newFeatured);
+        this.rightPanel.ApplyDataToFeaturedEpisode(this.data, this.leftPanel.randomArr[newFeatured]);
     }
 }
 
