@@ -1,9 +1,9 @@
+@use "../abstracts/mixins";
 footer{
     background: #FFFFFF;
     border-bottom-left-radius: 3rem;
     border-bottom-right-radius: 3rem;
     height: 10vh;
-    display: flex;
-    justify-content: center;
+    @include mixins.flexCenter;
     font-size: 70%;
 }

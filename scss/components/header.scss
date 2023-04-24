@@ -1,5 +1,18 @@
-header{
+@use "../abstracts/colors";
+@use "../abstracts/mixins";
+.header{
+    height: 25vh;
     background: #FFFFFF;
     border-top-left-radius: 3rem;
     border-top-right-radius: 3rem;
+    color: map-get(colors.$baseColors, "headerText");
+    @include mixins.flexCenter;
+    gap: 2rem;
+
+    &__logo{
+        font-size: 5rem;
+    }
+    &__text{
+        font-size: 3rem;
+    }
 }

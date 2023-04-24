@@ -1,0 +1,65 @@
+@media screen and (max-width:67.5rem) {
+    main{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4rem;
+    }
+
+    .leftSection{
+        width: 100%;
+        
+    }
+
+    .rightSection{
+        width: 100%;
+    }
+
+    .episodes{
+        &__episode{
+            width: 45%;
+        }
+    }
+}
+
+@media screen and (max-width:50rem) {
+    body{
+        padding: 0;
+    }
+
+    .header{
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        padding: 2rem;
+        &__text{
+            font-size: 2rem;
+        }
+    }
+
+    footer{
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        padding: 2rem;
+        height: 20vh;
+    }
+
+    .featuredEpisode{
+        &__paragraph{
+            font-size: 1rem;
+        }
+
+        &__navigation{
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
+}
+
+@media screen and (max-width:31.25rem) {
+    .episodes{
+        &__episode{
+            width: 100%;
+        }
+    }
+}

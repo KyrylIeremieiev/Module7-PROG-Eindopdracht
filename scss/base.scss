@@ -1,8 +1,11 @@
+@use "./abstracts/colors";
+@use "./abstracts/animations";
 body{
     min-height: 100vh;
     padding: 1.5rem;
-    background: #F9B208;
+    background: map-get(colors.$baseColors, "background");
     font-family: 'Ubuntu', sans-serif;
+    @include animations.a-popup;
 
 }
 
@@ -11,6 +14,4 @@ main{
     flex-direction: row-reverse;
     background: #FFFFFF;
     padding: 5rem;
-    height: 50rem;
-    
 }

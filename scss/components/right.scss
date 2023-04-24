@@ -1,3 +1,4 @@
+@use "../abstracts/colors";
 .rightSection{
     width: 40vw;
     font-size: 90%;
@@ -47,8 +48,12 @@
     &__audio{
         border: none;
         width: 15rem;
-        background: #F98404;
+        background: map-get(colors.$baseColors, "darkBackground");
         border-radius: 0.5rem;
+        font-size: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         &:hover{
             cursor: pointer;
