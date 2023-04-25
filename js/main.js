@@ -182,17 +182,17 @@ class RightPanel{
     }
 
     ApplyDataToFeaturedEpisode(data, currentFeatured){
-        this.applyDataToRightPanel = new ApplyDataToRightPanel(data, this.featured);
-        this.applyDataToRightPanel.ApplyDataToFeaturedDate(currentFeatured);
-        this.applyDataToRightPanel.ApplyDataToFeaturedCover(currentFeatured);
-        this.applyDataToRightPanel.ApplyDataToFeaturedTitle(currentFeatured);
-        this.applyDataToRightPanel.ApplyDataToFeaturedText(currentFeatured);
-        this.applyDataToRightPanel.ApplyDataToFeaturedAudio(currentFeatured);
-        this.applyDataToRightPanel.ApplyDataToFeaturedSource(currentFeatured);
+        this.detail = new DetailCard(data, this.featured);
+        this.detail.ApplyDataToFeaturedDate(currentFeatured);
+        this.detail.ApplyDataToFeaturedCover(currentFeatured);
+        this.detail.ApplyDataToFeaturedTitle(currentFeatured);
+        this.detail.ApplyDataToFeaturedText(currentFeatured);
+        this.detail.ApplyDataToFeaturedAudio(currentFeatured);
+        this.detail.ApplyDataToFeaturedSource(currentFeatured);
     }
 }
 
-class ApplyDataToRightPanel{
+class DetailCard{
     constructor(data, featured){
         this.data = data;
         this.featured = featured;
@@ -224,10 +224,6 @@ class ApplyDataToRightPanel{
         this.featuredSource = document.getElementById("js--source");
         this.featuredSource.setAttribute("href", Object.values(this.data.episodes[currentFeatured])[5]);
     }
-}
-
-class DetailCard{
-    
 }
 
 class GetData{
