@@ -36,10 +36,11 @@ class Footer{
 
 class LeftPanel{
     constructor(){
-        this.episode = document.getElementsByClassName("episodes__episode")
+        
     }
 
-    CreateHtml(){
+    CreateHtml(main){
+        this.episode = [];
         this.episodesUl = document.createElement("ul");
         this.episodesUl.classList = "episodes";
         for(let i = 0; i < 4; i++){
@@ -53,6 +54,7 @@ class LeftPanel{
 
             this.episodeLi = document.createElement("li");
             this.episodeLi.classList = "episodes__episode";
+            this.episode.push(this.episodeLi);
             this.episodeLi.appendChild(this.episodeDate);
             this.episodeLi.appendChild(this.episodeImg);
             this.episodeLi.appendChild(this.episodeTitle);
@@ -63,7 +65,7 @@ class LeftPanel{
         this.episodeSection = document.createElement("section");
         this.episodeSection.classList = "leftSection";
         this.episodeSection.appendChild(this.episodesUl)
-        document.getElementsByTagName("main")[0].appendChild(this.episodeSection);
+        main.appendChild(this.episodeSection);
     }
 
     ApplyDataToEpisode(data){
@@ -124,10 +126,10 @@ class ApplyDataToLeftPanel{
 
 class RightPanel{
     constructor(){
-        this.featured = document.getElementsByClassName("featuredEpisode");
     }
 
     CreateHtml(){
+        this.featured = []
         this.featuredEpisodeDate = document.createElement("p");
         this.featuredEpisodeDate.classList = "featuredEpisode__datum";
 
@@ -140,6 +142,7 @@ class RightPanel{
         
         this.featuredFigure = document.createElement("figure");
         this.featuredFigure.classList = "featuredEpisode";
+        this.featured.push(this.featuredFigure);
         //figure append
         this.featuredFigure.appendChild(this.featuredEpisodeDate);
         this.featuredFigure.appendChild(this.featuredEpisodeImage);
@@ -196,6 +199,7 @@ class DetailCard{
     constructor(data, featured){
         this.data = data;
         this.featured = featured;
+        console.log(this.featured)
     }
 
     ApplyDataToFeaturedDate(currentFeatured){
@@ -216,12 +220,12 @@ class DetailCard{
     }
 
     ApplyDataToFeaturedAudio(currentFeatured){
-        this.featuredAudio = document.getElementById("js--audio");
+        this.featuredAudio = app.rightPanel.featuredSource;
         this.featuredAudio.setAttribute("href", Object.values(this.data.episodes[currentFeatured])[4]);
     }
 
     ApplyDataToFeaturedSource(currentFeatured){
-        this.featuredSource = document.getElementById("js--source");
+        this.featuredSource = app.rightPanel.featuredAudio;
         this.featuredSource.setAttribute("href", Object.values(this.data.episodes[currentFeatured])[5]);
     }
 }
@@ -248,7 +252,7 @@ class App{
 
         this.header.CreateHtml();
         this.rightPanel.CreateHtml();
-        this.leftPanel.CreateHtml();
+        this.leftPanel.CreateHtml(this.rightPanel.main);
         this.footer.CreateHtml();
 
         this.getData.getData().then(()=>{
@@ -271,3 +275,4 @@ class App{
 }
 
 let app = new App();
+let app2 = new App();
